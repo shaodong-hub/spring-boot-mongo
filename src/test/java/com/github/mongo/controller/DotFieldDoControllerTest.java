@@ -27,11 +27,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
  * @since 0.0.1
  */
 
-@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @SpringBootTest
 @AutoConfigureMockMvc
 @ActiveProfiles("test")
 @RunWith(SpringRunner.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 public class DotFieldDoControllerTest {
 
     /**
@@ -43,7 +43,6 @@ public class DotFieldDoControllerTest {
     @Test
     @SneakyThrows(Exception.class)
     public void save() {
-
         DotFieldDO dotFieldDO = new DotFieldDO();
         dotFieldDO.setIp("1.1.1.1");
         //增加

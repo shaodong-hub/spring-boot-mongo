@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
 public class ConfigAutoCreateCollection {
 
     public String getCreate() {
-        return DateTime.now().toString("yyyy-MM-dd HH:mm");
+        return DateTime.now().toString("yyyy-MM-dd HH:mm.SSS");
     }
 
 }

@@ -23,6 +23,9 @@ public class ConfigDropCollections {
     @Resource
     public MongoTemplate template;
 
+    /**
+     * 启动时候删除所有的表
+     */
     @PostConstruct
     public void init() {
         Set<String> set = template.getCollectionNames();

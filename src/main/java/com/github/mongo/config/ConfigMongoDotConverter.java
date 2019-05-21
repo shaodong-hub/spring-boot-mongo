@@ -19,7 +19,7 @@ import javax.annotation.PostConstruct;
  * @since 0.0.1
  */
 
-@Configuration
+//@Configuration
 public class ConfigMongoDotConverter {
 
     private final MappingMongoConverter mongoConverter;
@@ -32,6 +32,5 @@ public class ConfigMongoDotConverter {
     public void setUpKeyDotConverter() {
         mongoConverter.setMapKeyDotReplacement("-\\*dot\\*-");
     }
-
 
 }

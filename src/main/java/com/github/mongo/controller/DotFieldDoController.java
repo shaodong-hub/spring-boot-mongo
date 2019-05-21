@@ -24,6 +24,12 @@ public class DotFieldDoController {
     @Resource
     private DotFieldDoRepository repository;
 
+    /**
+     * 保存单个 DotFieldDO 对象
+     *
+     * @param dotFieldDO  DotFieldDO
+     * @return DotFieldDO
+     */
     @PostMapping("dotfield")
     public DotFieldDO save(@RequestBody DotFieldDO dotFieldDO) {
         return repository.save(dotFieldDO);

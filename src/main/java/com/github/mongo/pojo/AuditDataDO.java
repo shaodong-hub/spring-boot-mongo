@@ -29,6 +29,8 @@ import java.util.Date;
 @Document(collection = "AuditDataDO")
 public class AuditDataDO {
 
+    private String data;
+
     @CreatedDate
     @Field("created_date")
     @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")

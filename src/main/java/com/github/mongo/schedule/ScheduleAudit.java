@@ -1,6 +1,11 @@
 package com.github.mongo.schedule;
 
+import com.github.mongo.pojo.AuditDataDO;
+import com.github.mongo.repository.AuditDataDoRepository;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.Resource;
 
 /**
  * <p>
@@ -15,4 +20,14 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ScheduleAudit {
+
+    @Resource
+    private AuditDataDoRepository repository;
+
+    @Scheduled(fixedDelay = 1000)
+    public void task() {
+        repository.save(new AuditDataDO());
+
+    }
+
 }
