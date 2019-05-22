@@ -3,11 +3,13 @@ package com.github.mongo.pojo;
 import com.alibaba.fastjson.JSON;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.validator.constraints.Range;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 /**
  * <p>
- * 创建时间为 19:16 2019-05-20
+ * 创建时间为 10:16 2019-05-21
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -18,10 +20,16 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@Document(collection = "DotFieldDO")
-public class DotFieldDO {
+@Document(collection = "UserFluxDO")
+public class UserFluxDO {
 
-    private String ip;
+    @Id
+    private String id;
+
+    private String name;
+
+    @Range(min = 10, max = 20)
+    private Integer age;
 
     @Override
     public String toString() {
