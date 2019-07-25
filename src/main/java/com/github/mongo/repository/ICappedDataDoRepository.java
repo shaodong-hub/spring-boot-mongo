@@ -1,11 +1,11 @@
 package com.github.mongo.repository;
 
-import com.github.mongo.pojo.ExpireDataDO;
+import com.github.mongo.pojo.CappedDataDO;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
  * <p>
- * 创建时间为 19:03 2019-05-20
+ * 创建时间为 19:24 2019-05-20
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -14,6 +14,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @since 0.0.1
  */
 
-public interface ExpireDataDoRepository extends PagingAndSortingRepository<ExpireDataDO, String> {
+public interface ICappedDataDoRepository extends PagingAndSortingRepository<CappedDataDO, String> {
 
 }

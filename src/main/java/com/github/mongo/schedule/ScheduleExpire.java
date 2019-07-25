@@ -1,7 +1,7 @@
 package com.github.mongo.schedule;
 
 import com.github.mongo.pojo.ExpireDataDO;
-import com.github.mongo.repository.ExpireDataDoRepository;
+import com.github.mongo.repository.IExpireDataDoRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +22,7 @@ import java.util.Date;
 public class ScheduleExpire {
 
     @Resource
-    private ExpireDataDoRepository repository;
+    private IExpireDataDoRepository repository;
 
     @Scheduled(fixedDelay = 1000)
     public void task() {

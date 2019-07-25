@@ -1,7 +1,7 @@
 package com.github.mongo.controller;
 
 import com.github.mongo.pojo.SimpleDataDO;
-import com.github.mongo.repository.SimpleDataRepository;
+import com.github.mongo.repository.ISimpleDataRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
@@ -25,7 +25,7 @@ import javax.annotation.Resource;
 public class SimpleDataController {
 
     @Resource
-    private SimpleDataRepository repository;
+    private ISimpleDataRepository repository;
 
     /**
      * SimpleDataDO

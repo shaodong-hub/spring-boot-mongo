@@ -1,7 +1,7 @@
 package com.github.mongo.schedule;
 
 import com.github.mongo.pojo.CappedDataDO;
-import com.github.mongo.repository.CappedDataDoRepository;
+import com.github.mongo.repository.ICappedDataDoRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -23,7 +23,7 @@ import java.util.Date;
 public class ScheduleCapped {
 
     @Resource
-    private CappedDataDoRepository repository;
+    private ICappedDataDoRepository repository;
 
     @Scheduled(fixedDelay = 1000)
     public void task() {

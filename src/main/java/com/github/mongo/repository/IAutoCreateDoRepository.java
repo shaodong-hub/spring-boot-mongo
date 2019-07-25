@@ -14,6 +14,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @since 0.0.1
  */
 
-public interface AutoCreateDoRepository extends PagingAndSortingRepository<AutoCreateDO, String> {
+public interface IAutoCreateDoRepository extends PagingAndSortingRepository<AutoCreateDO, String> {
 
 }

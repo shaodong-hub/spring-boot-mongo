@@ -1,7 +1,6 @@
 package com.github.mongo.repository;
 
 import com.github.mongo.pojo.AuditDataDO;
-import com.github.mongo.pojo.DotFieldDO;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -15,6 +14,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @since 0.0.1
  */
 
-public interface AuditDataDoRepository extends PagingAndSortingRepository<AuditDataDO, String> {
+public interface IAuditDataDoRepository extends PagingAndSortingRepository<AuditDataDO, String> {
 
 }

@@ -14,6 +14,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @since 0.0.1
  */
 
-public interface DotFieldDoRepository extends PagingAndSortingRepository<DotFieldDO, String> {
+public interface IDotFieldDoRepository extends PagingAndSortingRepository<DotFieldDO, String> {
 
 }

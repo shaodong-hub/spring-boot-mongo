@@ -17,7 +17,7 @@ import java.util.concurrent.Future;
  * @since 0.0.1
  */
 
-public interface SimpleDataRepository extends PagingAndSortingRepository<SimpleDataDO, String> {
+public interface ISimpleDataRepository extends PagingAndSortingRepository<SimpleDataDO, String> {
 
     /**
      * 根据 ID 查询 SimpleDataDO
