@@ -1,5 +1,6 @@
 package com.github.mongo.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 
 import javax.annotation.PostConstruct;
@@ -18,7 +19,7 @@ import javax.annotation.PostConstruct;
  * @since 0.0.1
  */
 
-//@Configuration
+@Configuration
 public class ConfigMongoDotConverter {
 
     private final MappingMongoConverter mongoConverter;

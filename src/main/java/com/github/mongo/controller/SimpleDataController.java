@@ -1,5 +1,6 @@
 package com.github.mongo.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.github.mongo.pojo.SimpleDataDO;
 import com.github.mongo.repository.ISimpleDataRepository;
 import org.springframework.data.domain.Page;
@@ -35,8 +36,8 @@ public class SimpleDataController {
      */
     @GetMapping("/simple")
     public Page<SimpleDataDO> findAll(@PageableDefault(size = 4, page = 1, sort = "id,asc") Pageable pageable) {
-        return repository.findAll(pageable);
+        Page<SimpleDataDO> page = repository.findAll(pageable);
+        System.out.println(JSON.toJSONString(page));
+        return page;
     }
-
-
 }

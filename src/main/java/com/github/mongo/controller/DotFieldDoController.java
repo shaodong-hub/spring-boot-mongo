@@ -30,7 +30,7 @@ public class DotFieldDoController {
      * @param dotFieldDO  DotFieldDO
      * @return DotFieldDO
      */
-    @PostMapping("dotfield")
+    @PostMapping("/dot")
     public DotFieldDO save(@RequestBody DotFieldDO dotFieldDO) {
         return repository.save(dotFieldDO);
     }

@@ -1,8 +1,8 @@
 package com.github.mongo.controller;
 
-import com.github.mongo.dao.GridFsResourceDao;
-import lombok.SneakyThrows;
+import com.github.mongo.dao.GridFsResourceRepository;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpHeaders;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 /**
  * <p>
@@ -30,7 +31,18 @@ import java.io.OutputStream;
 public class GridFsResourceController {
 
     @Resource
-    private GridFsResourceDao resourceDao;
+    private GridFsResourceRepository resourceDao;
+
+    /**
+     * 获取所有的文件名
+     *
+     * @return 文件名
+     */
+    @GetMapping("/files")
+    public List<String> files() {
+        return resourceDao.getFileName();
+    }
+
 
     /**
      * 下载文件
@@ -39,8 +51,7 @@ public class GridFsResourceController {
      * @param response HttpServletResponse
      */
     @GetMapping("/file/{id}")
-    @SneakyThrows(IOException.class)
-    public void download(@PathVariable String id, HttpServletResponse response) {
+    public void download(@PathVariable String id, @NotNull HttpServletResponse response) throws IOException {
         OutputStream outputStream = response.getOutputStream();
         response.setContentType("application/x-download");
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=test.txt");
@@ -57,8 +68,7 @@ public class GridFsResourceController {
      * @return String 文件名
      */
     @PostMapping("/file/{id}")
-    @SneakyThrows(IOException.class)
-    public String upload(@PathVariable String id, MultipartFile file) {
+    public String upload(@PathVariable String id, @NotNull MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();
         return resourceDao.saveFile(id, inputStream);
     }

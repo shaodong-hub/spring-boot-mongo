@@ -10,6 +10,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 /**
+ * 自定义创建表名的 demo
+ *
  * <p>
  * 创建时间为 18:59 2019-05-20
  * 项目名称 spring-boot-mongo

@@ -18,6 +18,9 @@ import javax.annotation.Resource;
 import javax.persistence.GeneratedValue;
 
 /**
+ * 保存数据自定义 id 字段
+ *
+ *
  * <p>
  * 创建时间为 19:04 2019-05-20
  * 项目名称 spring-boot-mongo

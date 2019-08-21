@@ -49,8 +49,7 @@ public class DotFieldDoControllerTest {
         String result1 = mockMvc.perform(MockMvcRequestBuilders.post("/dotfield")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
                 .content(dotFieldDO.toString()))
-                .andExpect(status()
-                        .isOk())
+                .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()
                 .getContentAsString();

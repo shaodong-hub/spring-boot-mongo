@@ -1,26 +1,29 @@
 package com.github.mongo.controller;
 
+import com.alibaba.fastjson.JSON;
+import com.github.mongo.pojo.ComplexDataDO;
+import com.github.mongo.pojo.ComplexDataDTO;
+import org.jetbrains.annotations.NotNull;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.http.MediaType;
-import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
-import java.nio.charset.StandardCharsets;
+import javax.annotation.Resource;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
  * <p>
- * 创建时间为 19:48 2019-05-20
+ * 创建时间为 14:52 2019-08-20
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -32,45 +35,41 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @RunWith(SpringRunner.class)
-public class GridFsResourceControllerTest {
+public class ComplexDataControllerTest {
 
     /**
      * 模拟mvc测试对象
      */
-    @Autowired
+    @Resource
     private MockMvc mockMvc;
 
+    @Resource
+    private MongoTemplate mongoTemplate;
+
+    @Before
+    public void setUp() throws Exception {
+        mongoTemplate.dropCollection(ComplexDataDO.class);
+    }
+
     @Test
-    public void files() throws Exception {
-        String result = mockMvc.perform(MockMvcRequestBuilders.get("/files"))
+    public void update() throws Exception {
+        mockMvc.perform(MockMvcRequestBuilders.post("/complex")
+                .contentType(MediaType.APPLICATION_JSON_UTF8)
+                .content(JSON.toJSONString(getComplexDataDTO())))
                 .andDo(print())
                 .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.length()").value(2))
                 .andReturn()
                 .getResponse()
                 .getContentAsString();
-        System.out.println(result);
     }
 
-
-    @Test
-    public void download() {
-    }
-
-    @Test
-    public void upload() throws Exception {
-        MockMultipartFile file = new MockMultipartFile(
-                "file",
-                "test.txt",
-                MediaType.MULTIPART_FORM_DATA_VALUE,
-                "hello upload".getBytes(StandardCharsets.UTF_8));
-
-        String result = mockMvc.perform(multipart("/file/123")
-                .file(file))
-                .andExpect(status().isOk())
-                .andReturn().getResponse().getContentAsString();
-        System.out.println(result);
-
+    @NotNull
+    private ComplexDataDTO getComplexDataDTO() {
+        ComplexDataDTO dataDTO = new ComplexDataDTO();
+        dataDTO.setName("name1");
+        dataDTO.setKey("key1");
+        dataDTO.setValue(10);
+        return dataDTO;
     }
 
 

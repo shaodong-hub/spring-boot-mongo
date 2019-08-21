@@ -14,6 +14,8 @@ import org.springframework.data.mongodb.core.convert.MongoCustomConversions;
 import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
 
 /**
+ * _class 不保存 字段不保存
+ *
  * <p>
  * 创建时间为 19:12 2019-05-20
  * 项目名称 spring-boot-mongo

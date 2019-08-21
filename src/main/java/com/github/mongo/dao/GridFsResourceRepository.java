@@ -1,5 +1,6 @@
 package com.github.mongo.dao;
 
+import com.google.common.collect.Lists;
 import lombok.SneakyThrows;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Repository;
 import javax.annotation.Resource;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.springframework.data.mongodb.core.query.Criteria.where;
 
@@ -24,10 +27,17 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
  */
 
 @Repository
-public class GridFsResourceDao {
+public class GridFsResourceRepository {
 
     @Resource
     private GridFsOperations operations;
+
+    public List<String> getFileName() {
+        GridFsResource[] resources = operations.getResources("*");
+        return Lists.newArrayList(resources).stream()
+                .map(GridFsResource::getFilename)
+                .collect(Collectors.toList());
+    }
 
     /**
      * 保存文件

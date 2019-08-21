@@ -9,6 +9,8 @@ import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 /**
+ * 创建固定大小的集合
+ *
  * <p>
  * 创建时间为 19:00 2019-05-20
  * 项目名称 spring-boot-mongo
@@ -25,6 +27,9 @@ public class ConfigCappedCollection {
     @Resource
     private MongoTemplate template;
 
+    /**
+     * 创建固定大小的集合, 没有就生成
+     */
     @PostConstruct
     public void initCappedCollection() {
         if (!template.collectionExists(CappedDataDO.class)) {

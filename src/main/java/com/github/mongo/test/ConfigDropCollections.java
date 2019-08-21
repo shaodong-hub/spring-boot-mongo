@@ -1,6 +1,5 @@
-package com.github.mongo.config;
+package com.github.mongo.test;
 
-import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import javax.annotation.PostConstruct;
@@ -17,7 +16,7 @@ import java.util.Set;
  * @version 0.0.1
  * @since 0.0.1
  */
-@Configuration
+//@Configuration
 public class ConfigDropCollections {
 
     @Resource

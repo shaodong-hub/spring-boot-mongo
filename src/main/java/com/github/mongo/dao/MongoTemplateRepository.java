@@ -22,7 +22,7 @@ import java.util.List;
  */
 
 @Repository
-public class MongoTemplateDao {
+public class MongoTemplateRepository {
 
     @Resource
     private MongoTemplate mongoTemplate;

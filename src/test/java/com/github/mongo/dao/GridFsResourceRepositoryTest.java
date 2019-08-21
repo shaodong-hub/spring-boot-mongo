@@ -1,6 +1,5 @@
 package com.github.mongo.dao;
 
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.autoconfigure.data.mongo.DataMongoTest;
@@ -26,7 +25,7 @@ import java.io.InputStream;
 @DataMongoTest
 @RunWith(SpringRunner.class)
 @IfProfileValue(name = AbstractEnvironment.ACTIVE_PROFILES_PROPERTY_NAME, value = "test")
-public class GridFsResourceDaoTest {
+public class GridFsResourceRepositoryTest {
 
 //    @Resource
 //    private GridFsResourceDao resourceDao;
