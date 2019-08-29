@@ -48,8 +48,10 @@ public class SumDataController {
     private static class SumDataDO {
         @Id
         private String id;
+
         @Indexed(unique = true)
         private String name;
+
         private Integer count;
     }
 

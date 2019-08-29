@@ -1,4 +1,4 @@
-package com.github.mongo.common;
+package com.github.mongo.provider;
 
 import org.joda.time.DateTime;
 import org.springframework.context.annotation.Configuration;
@@ -17,9 +17,9 @@ import org.springframework.context.annotation.Configuration;
  * @since 0.0.1
  */
 @Configuration("auto")
-public class ConfigAutoCreateCollection {
+public class ConfigCollectionNameProvider {
 
-    public String getCreate() {
+    public String getName() {
         return DateTime.now().toString("yyyy-MM-dd_HH:mm");
     }
 

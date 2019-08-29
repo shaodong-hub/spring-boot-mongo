@@ -11,4 +11,4 @@
  * @since 0.0.1
  */
 
-package com.github.mongo.common;
+package com.github.mongo.provider;
