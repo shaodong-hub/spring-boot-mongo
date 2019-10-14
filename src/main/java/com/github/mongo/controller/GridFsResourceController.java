@@ -1,6 +1,6 @@
 package com.github.mongo.controller;
 
-import com.github.mongo.dao.GridFsResourceRepository;
+import com.github.mongo.repository.IGridFsResourceRepository;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpHeaders;
@@ -31,7 +31,7 @@ import java.util.List;
 public class GridFsResourceController {
 
     @Resource
-    private GridFsResourceRepository resourceDao;
+    private IGridFsResourceRepository repository;
 
     /**
      * 获取所有的文件名
@@ -40,22 +40,21 @@ public class GridFsResourceController {
      */
     @GetMapping("/files")
     public List<String> files() {
-        return resourceDao.getFileName();
+        return repository.getFileName();
     }
-
 
     /**
      * 下载文件
      *
-     * @param id       文件的ID
+     * @param name     文件名称
      * @param response HttpServletResponse
      */
-    @GetMapping("/file/{id}")
-    public void download(@PathVariable String id, @NotNull HttpServletResponse response) throws IOException {
+    @GetMapping("/file/{name}")
+    public void download(@PathVariable String name, @NotNull HttpServletResponse response) throws IOException {
         OutputStream outputStream = response.getOutputStream();
         response.setContentType("application/x-download");
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=test.txt");
-        InputStream inputStream = resourceDao.getByName(id);
+        InputStream inputStream = repository.getFileByName(name);
         IOUtils.copy(inputStream, outputStream);
         outputStream.flush();
     }
@@ -70,7 +69,7 @@ public class GridFsResourceController {
     @PostMapping("/file/{id}")
     public String upload(@PathVariable String id, @NotNull MultipartFile file) throws IOException {
         InputStream inputStream = file.getInputStream();
-        return resourceDao.saveFile(id, inputStream);
+        return repository.saveFile(id, inputStream);
     }
 
 }

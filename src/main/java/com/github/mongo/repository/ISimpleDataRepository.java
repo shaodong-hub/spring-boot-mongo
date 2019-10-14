@@ -1,6 +1,6 @@
 package com.github.mongo.repository;
 
-import com.github.mongo.pojo.SimpleDataDO;
+import com.github.mongo.pojo.doo.SimpleDataDO;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.scheduling.annotation.Async;
 

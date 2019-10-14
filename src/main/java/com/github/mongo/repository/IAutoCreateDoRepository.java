@@ -1,6 +1,6 @@
 package com.github.mongo.repository;
 
-import com.github.mongo.pojo.AutoCreateDO;
+import com.github.mongo.pojo.doo.AutoCreateDO;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

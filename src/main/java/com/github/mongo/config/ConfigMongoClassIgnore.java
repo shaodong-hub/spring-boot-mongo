@@ -1,6 +1,7 @@
 package com.github.mongo.config;
 
 import lombok.SneakyThrows;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.context.annotation.Bean;
@@ -39,7 +40,7 @@ public class ConfigMongoClassIgnore {
      */
     @Bean
     @SneakyThrows(NoSuchBeanDefinitionException.class)
-    public MappingMongoConverter mappingMongoConverter(MongoDbFactory factory, MongoMappingContext context, BeanFactory beanFactory) {
+    public MappingMongoConverter mappingMongoConverter(MongoDbFactory factory, MongoMappingContext context, @NotNull BeanFactory beanFactory) {
         DbRefResolver dbRefResolver = new DefaultDbRefResolver(factory);
         MappingMongoConverter mappingConverter = new MappingMongoConverter(dbRefResolver, context);
         mappingConverter.setCustomConversions(beanFactory.getBean(MongoCustomConversions.class));

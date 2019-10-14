@@ -1,6 +1,6 @@
 package com.github.mongo.controller;
 
-import com.github.mongo.pojo.JpaDateDO;
+import com.github.mongo.pojo.doo.JpaDateDO;
 import com.github.mongo.repository.IJpaDateDoRepository;
 import org.joda.time.DateTime;
 import org.springframework.data.domain.Page;
@@ -38,7 +38,7 @@ public class JpaDateController {
     }
 
     @GetMapping("jpadate")
-    public Page<JpaDateDO> getAll(@PageableDefault(size = 10, page = 1, sort = "id,asc") Pageable pageable) {
+    public Page<JpaDateDO> getAll(@PageableDefault(size = 4, page = 1, sort = "id,asc") Pageable pageable) {
         return repository.findJpaDateDOByDateBetween(DateTime.now().minusMinutes(1).toDate(), new Date(), pageable);
     }
 

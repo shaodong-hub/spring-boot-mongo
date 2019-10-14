@@ -1,6 +1,6 @@
 package com.github.mongo.schedule;
 
-import com.github.mongo.pojo.AuditDataDO;
+import com.github.mongo.pojo.doo.AuditDataDO;
 import com.github.mongo.repository.IAuditDataDoRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

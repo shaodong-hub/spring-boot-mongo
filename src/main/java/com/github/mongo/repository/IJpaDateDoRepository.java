@@ -1,6 +1,6 @@
 package com.github.mongo.repository;
 
-import com.github.mongo.pojo.JpaDateDO;
+import com.github.mongo.pojo.doo.JpaDateDO;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;

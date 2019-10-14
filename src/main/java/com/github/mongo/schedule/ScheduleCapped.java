@@ -1,6 +1,6 @@
 package com.github.mongo.schedule;
 
-import com.github.mongo.pojo.CappedDataDO;
+import com.github.mongo.pojo.doo.CappedDataDO;
 import com.github.mongo.repository.ICappedDataDoRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

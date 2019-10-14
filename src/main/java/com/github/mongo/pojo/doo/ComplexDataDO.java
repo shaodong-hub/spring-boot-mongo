@@ -1,19 +1,17 @@
-package com.github.mongo.pojo;
+package com.github.mongo.pojo.doo;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Date;
+import java.util.Map;
 
 /**
  * <p>
- * 创建时间为 下午7:54 2019/8/26
+ * 创建时间为 14:39 2019-08-20
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -21,18 +19,18 @@ import java.util.Date;
  * @version 0.0.1
  * @since 0.0.1
  */
-@Getter
 @Setter
-@Builder
-@NoArgsConstructor
-@AllArgsConstructor
-@Document(collection = "jpa_date")
-public class JpaDateDO {
+@Getter
+@ToString
+@Document(collection = "complex_data")
+public class ComplexDataDO {
 
     @Id
     private String id;
 
-    @Indexed
-    private Date date;
+    @Indexed(unique = true)
+    private String name;
+
+    private Map<String, Integer> data;
 
 }

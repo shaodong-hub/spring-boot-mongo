@@ -1,8 +1,8 @@
 package com.github.mongo.controller;
 
-import com.github.mongo.dao.ComplexDataRepository;
-import com.github.mongo.pojo.ComplexDataDO;
-import com.github.mongo.pojo.ComplexDataDTO;
+import com.github.mongo.pojo.doo.ComplexDataDO;
+import com.github.mongo.pojo.dto.ComplexDataDTO;
+import com.github.mongo.repository.IComplexDataRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,12 +23,11 @@ import javax.annotation.Resource;
 public class ComplexDataController {
 
     @Resource
-    private ComplexDataRepository complexDataRepository;
+    private IComplexDataRepository repository;
 
     @PostMapping("complex")
     public ComplexDataDO update(@RequestBody ComplexDataDTO dataDTO) {
-        return complexDataRepository.update(dataDTO);
+        return repository.update(dataDTO);
     }
-
 
 }

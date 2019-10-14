@@ -1,6 +1,6 @@
 package com.github.mongo.config;
 
-import com.github.mongo.pojo.CappedDataDO;
+import com.github.mongo.pojo.doo.CappedDataDO;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.CollectionOptions;
 import org.springframework.data.mongodb.core.MongoTemplate;

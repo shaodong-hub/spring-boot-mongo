@@ -1,7 +1,7 @@
-package com.github.mongo.dao;
+package com.github.mongo.repository.impl;
 
+import com.github.mongo.repository.IGridFsResourceRepository;
 import com.google.common.collect.Lists;
-import lombok.SneakyThrows;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.data.mongodb.gridfs.GridFsOperations;
 import org.springframework.data.mongodb.gridfs.GridFsResource;
@@ -17,7 +17,7 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
 
 /**
  * <p>
- * 创建时间为 19:01 2019-05-20
+ * 创建时间为 上午11:34 2019/10/8
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -25,13 +25,13 @@ import static org.springframework.data.mongodb.core.query.Criteria.where;
  * @version 0.0.1
  * @since 0.0.1
  */
-
 @Repository
-public class GridFsResourceRepository {
+public class GridFsResourceRepositoryImpl implements IGridFsResourceRepository {
 
     @Resource
     private GridFsOperations operations;
 
+    @Override
     public List<String> getFileName() {
         GridFsResource[] resources = operations.getResources("*");
         return Lists.newArrayList(resources).stream()
@@ -39,38 +39,20 @@ public class GridFsResourceRepository {
                 .collect(Collectors.toList());
     }
 
-    /**
-     * 保存文件
-     *
-     * @param fileName    文件名称
-     * @param inputStream 输入流
-     * @return String
-     */
+    @Override
     public String saveFile(String fileName, InputStream inputStream) {
         operations.store(inputStream, fileName);
         return fileName;
     }
 
-    /**
-     * 根据文件名获取输入流
-     *
-     * @param fileName 文件名称
-     * @return InputStream
-     */
-    @SneakyThrows(IOException.class)
-    public InputStream getByName(String fileName) {
+    @Override
+    public InputStream getFileByName(String fileName) throws IOException {
         GridFsResource resource = operations.getResource(fileName);
         return resource.getInputStream();
     }
 
-    /**
-     * 删除文件
-     *
-     * @param fileName 文件名
-     */
-    public void delete(String fileName) {
+    @Override
+    public void deleteByName(String fileName) {
         operations.delete(new Query(where("filename").is(fileName)));
     }
-
-
 }

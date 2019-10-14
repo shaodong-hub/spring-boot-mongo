@@ -1,6 +1,6 @@
 package com.github.mongo.repository;
 
-import com.github.mongo.pojo.DotFieldDO;
+import com.github.mongo.pojo.doo.DotFieldDO;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

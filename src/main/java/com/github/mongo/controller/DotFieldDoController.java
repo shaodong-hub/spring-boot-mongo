@@ -1,6 +1,6 @@
 package com.github.mongo.controller;
 
-import com.github.mongo.pojo.DotFieldDO;
+import com.github.mongo.pojo.doo.DotFieldDO;
 import com.github.mongo.repository.IDotFieldDoRepository;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;

@@ -1,6 +1,7 @@
 package com.github.mongo.controller;
 
-import com.github.mongo.pojo.DotFieldDO;
+import com.alibaba.fastjson.JSON;
+import com.github.mongo.pojo.doo.DotFieldDO;
 import lombok.SneakyThrows;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -14,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 /**
@@ -46,9 +48,10 @@ public class DotFieldDoControllerTest {
         DotFieldDO dotFieldDO = new DotFieldDO();
         dotFieldDO.setIp("1.1.1.1");
         //增加
-        String result1 = mockMvc.perform(MockMvcRequestBuilders.post("/dotfield")
+        String result1 = mockMvc.perform(MockMvcRequestBuilders.post("/dot")
                 .contentType(MediaType.APPLICATION_JSON_UTF8)
-                .content(dotFieldDO.toString()))
+                .content(JSON.toJSONString(dotFieldDO)))
+                .andDo(print())
                 .andExpect(status().isOk())
                 .andReturn()
                 .getResponse()

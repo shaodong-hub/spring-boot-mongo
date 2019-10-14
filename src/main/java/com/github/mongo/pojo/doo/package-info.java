@@ -1,8 +1,8 @@
 /**
- * 数据访问层
+ * 实体类
  *
  * <p>
- * 创建时间为 09:23 2019-05-21
+ * 创建时间为 09:26 2019-05-21
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -11,4 +11,4 @@
  * @since 0.0.1
  */
 
-package com.github.mongo.dao;
+package com.github.mongo.pojo.doo;

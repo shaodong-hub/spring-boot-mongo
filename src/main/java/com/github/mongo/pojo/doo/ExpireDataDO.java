@@ -1,10 +1,10 @@
-package com.github.mongo.pojo;
+package com.github.mongo.pojo.doo;
 
-import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -24,8 +24,9 @@ import java.util.Date;
  */
 @Getter
 @Setter
+@ToString
 @AllArgsConstructor
-@Document(collection = "ExpireDO")
+@Document(collection = "expiredo")
 public class ExpireDataDO {
 
     /**
@@ -36,10 +37,5 @@ public class ExpireDataDO {
     @Indexed(name = "ttl", expireAfterSeconds = 7)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date expire;
-
-    @Override
-    public String toString() {
-        return JSON.toJSONString(this);
-    }
 
 }

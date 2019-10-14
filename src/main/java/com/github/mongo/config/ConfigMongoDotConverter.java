@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.Resource;
 
 /**
  * 当 key 中存在小数点的时候, key 需要转换,该模块为转换器
@@ -22,11 +23,8 @@ import javax.annotation.PostConstruct;
 @Configuration
 public class ConfigMongoDotConverter {
 
-    private final MappingMongoConverter mongoConverter;
-
-    public ConfigMongoDotConverter(MappingMongoConverter mongoConverter) {
-        this.mongoConverter = mongoConverter;
-    }
+    @Resource
+    private MappingMongoConverter mongoConverter;
 
     @PostConstruct
     public void setUpKeyDotConverter() {

@@ -1,6 +1,6 @@
 package com.github.mongo.repository;
 
-import com.github.mongo.pojo.AuditDataDO;
+import com.github.mongo.pojo.doo.AuditDataDO;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

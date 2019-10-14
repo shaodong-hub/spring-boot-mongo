@@ -1,7 +1,7 @@
 package com.github.mongo.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.github.mongo.pojo.SimpleDataDO;
+import com.github.mongo.pojo.doo.SimpleDataDO;
 import com.github.mongo.repository.ISimpleDataRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -40,4 +40,5 @@ public class SimpleDataController {
         System.out.println(JSON.toJSONString(page));
         return page;
     }
+
 }

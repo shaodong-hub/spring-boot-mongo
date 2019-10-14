@@ -1,8 +1,11 @@
-package com.github.mongo.pojo;
+package com.github.mongo.pojo.doo;
 
-import com.alibaba.fastjson.JSON;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,10 +13,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.Date;
 
 /**
- * 自定义创建表名的 demo
- *
  * <p>
- * 创建时间为 18:59 2019-05-20
+ * 创建时间为 下午7:54 2019/8/26
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -24,22 +25,17 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Document(collection = "#{@auto.getName()}")
-public class AutoCreateDO {
+@Builder
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@Document(collection = "jpa_date")
+public class JpaDateDO {
 
     @Id
     private String id;
 
     @Indexed
     private Date date;
-
-    public AutoCreateDO(Date date) {
-        this.date = date;
-    }
-
-    @Override
-    public String toString() {
-        return JSON.toJSONString(this);
-    }
 
 }

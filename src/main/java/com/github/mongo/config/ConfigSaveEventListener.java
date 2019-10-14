@@ -1,6 +1,6 @@
 package com.github.mongo.config;
 
-import com.github.mongo.pojo.SeqInfoDO;
+import com.github.mongo.pojo.doo.SeqInfoDO;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.mongodb.core.FindAndModifyOptions;
@@ -67,7 +67,5 @@ public class ConfigSaveEventListener<E> extends AbstractMongoEventListener<E> {
         Assert.notNull(seq, "");
         return StringUtils.substring((seq.getSeqId() + 1000000) + "", 1);
     }
-
-
 
 }

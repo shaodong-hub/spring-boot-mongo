@@ -1,4 +1,4 @@
-package com.github.mongo.test;
+package com.github.mongo.init;
 
 import org.springframework.data.mongodb.core.MongoTemplate;
 

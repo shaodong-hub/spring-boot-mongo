@@ -1,15 +1,15 @@
-package com.github.mongo.pojo;
+package com.github.mongo.pojo.doo;
 
 import com.alibaba.fastjson.JSON;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
 /**
- * 小数点转换的 demo
- *
  * <p>
- * 创建时间为 19:16 2019-05-20
+ * 创建时间为 19:08 2019-05-20
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -20,10 +20,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Getter
 @Setter
-@Document(collection = "dot_field")
-public class DotFieldDO {
+@Document(collection = "sequence")
+public class SeqInfoDO {
 
-    private String ip;
+    @Id
+    private String id;
+
+    @Field
+    private String collName;
+
+    @Field
+    private Long seqId;
 
     @Override
     public String toString() {

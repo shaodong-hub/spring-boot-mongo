@@ -1,24 +1,26 @@
-package com.github.mongo.pojo;
+package com.github.mongo.pojo.doo;
 
-import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.annotation.Transient;
 import org.springframework.data.annotation.Version;
+import org.springframework.data.mongodb.core.index.CompoundIndex;
+import org.springframework.data.mongodb.core.index.CompoundIndexes;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
 
 /**
- * 审计 demo
- *
  * <p>
- * 创建时间为 18:57 2019-05-20
+ * 创建时间为 19:17 2019-05-20
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -27,15 +29,33 @@ import java.util.Date;
  * @since 0.0.1
  */
 
+
 @Getter
 @Setter
-@Document(collection = "audit_data")
-public class AuditDataDO {
+@ToString
+@Document(collection = "simple_data")
+@CompoundIndexes({
+        @CompoundIndex(name = "index", def = "{'message':1,'field':1}")
+})
+@JsonInclude(JsonInclude.Include.NON_EMPTY)
+public class SimpleDataDO {
 
     @Id
     private String id;
 
-    private String data;
+    @Field("desc")
+    private String message;
+
+    private String field;
+
+    /**
+     * 创建 ttl 的集合, 创建改集合时需要设置 ttl 字段, 特别要注意, 该字段 存入的数据类型为 Date
+     * 用来设置集合中 文档到期的秒数。如果没有设置，则默认为-1
+     * 60 秒之后过期
+     */
+    @Indexed(name = "ttl", expireAfterSeconds = 60)
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    private Date expire;
 
     @CreatedDate
     @Field("created_date")
@@ -53,12 +73,10 @@ public class AuditDataDO {
     @Transient
     private Long temp;
 
+    /**
+     * 版本号
+     */
     @Version
     private Long version;
-
-    @Override
-    public String toString() {
-        return JSON.toJSONString(this);
-    }
 
 }

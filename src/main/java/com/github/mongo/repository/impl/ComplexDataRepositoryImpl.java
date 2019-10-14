@@ -1,7 +1,8 @@
-package com.github.mongo.dao;
+package com.github.mongo.repository.impl;
 
-import com.github.mongo.pojo.ComplexDataDO;
-import com.github.mongo.pojo.ComplexDataDTO;
+import com.github.mongo.pojo.doo.ComplexDataDO;
+import com.github.mongo.pojo.dto.ComplexDataDTO;
+import com.github.mongo.repository.IComplexDataRepository;
 import com.mongodb.client.result.UpdateResult;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.data.mongodb.core.MongoTemplate;
@@ -14,7 +15,7 @@ import javax.annotation.Resource;
 
 /**
  * <p>
- * 创建时间为 14:41 2019-08-20
+ * 创建时间为 上午11:42 2019/10/8
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -22,18 +23,14 @@ import javax.annotation.Resource;
  * @version 0.0.1
  * @since 0.0.1
  */
+
 @Repository
-public class ComplexDataRepository {
+public class ComplexDataRepositoryImpl implements IComplexDataRepository {
 
     @Resource
     private MongoTemplate mongoTemplate;
 
-    /**
-     * 更新数据
-     *
-     * @param dataDO 数据
-     * @return ComplexDataDO
-     */
+    @Override
     public ComplexDataDO update(@NotNull ComplexDataDTO dataDO) {
         Query query = Query.query(Criteria.where("name").is(dataDO.getName()));
         Update update = new Update().inc("data." + dataDO.getKey(), dataDO.getValue());

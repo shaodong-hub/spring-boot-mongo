@@ -1,6 +1,6 @@
 package com.github.mongo.schedule;
 
-import com.github.mongo.pojo.ExpireDataDO;
+import com.github.mongo.pojo.doo.ExpireDataDO;
 import com.github.mongo.repository.IExpireDataDoRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;

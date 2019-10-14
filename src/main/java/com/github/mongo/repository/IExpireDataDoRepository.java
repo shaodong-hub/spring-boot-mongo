@@ -1,6 +1,6 @@
 package com.github.mongo.repository;
 
-import com.github.mongo.pojo.ExpireDataDO;
+import com.github.mongo.pojo.doo.ExpireDataDO;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**

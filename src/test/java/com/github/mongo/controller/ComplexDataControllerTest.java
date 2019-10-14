@@ -1,8 +1,8 @@
 package com.github.mongo.controller;
 
 import com.alibaba.fastjson.JSON;
-import com.github.mongo.pojo.ComplexDataDO;
-import com.github.mongo.pojo.ComplexDataDTO;
+import com.github.mongo.pojo.doo.ComplexDataDO;
+import com.github.mongo.pojo.dto.ComplexDataDTO;
 import org.jetbrains.annotations.NotNull;
 import org.junit.Before;
 import org.junit.Test;

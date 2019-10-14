@@ -1,6 +1,6 @@
 package com.github.mongo.repository;
 
-import com.github.mongo.pojo.CappedDataDO;
+import com.github.mongo.pojo.doo.CappedDataDO;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
