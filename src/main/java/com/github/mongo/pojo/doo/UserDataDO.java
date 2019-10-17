@@ -38,15 +38,18 @@ import java.util.Date;
         @CompoundIndex(name = "index", def = "{'message':1,'field':1}")
 })
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
-public class SimpleDataDO {
+public class UserDataDO {
 
     @Id
     private String id;
 
-    @Field("desc")
-    private String message;
+    @Indexed
+    private String name;
 
     private String field;
+
+    @Field("desc")
+    private String message;
 
     /**
      * 创建 ttl 的集合, 创建改集合时需要设置 ttl 字段, 特别要注意, 该字段 存入的数据类型为 Date
@@ -78,5 +81,6 @@ public class SimpleDataDO {
      */
     @Version
     private Long version;
+
 
 }

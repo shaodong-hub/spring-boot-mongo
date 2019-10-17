@@ -1,12 +1,16 @@
 package com.github.mongo.pojo.doo;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -21,15 +25,25 @@ import java.util.Map;
  */
 @Setter
 @Getter
+@Builder
 @ToString
+@NoArgsConstructor
+@AllArgsConstructor
 @Document(collection = "complex_data")
 public class ComplexDataDO {
 
     @Id
     private String id;
 
-    @Indexed(unique = true)
+    @Indexed
     private String name;
+
+    private String pass;
+
+    private Integer count;
+
+    @Indexed
+    private Date date;
 
     private Map<String, Integer> data;
 

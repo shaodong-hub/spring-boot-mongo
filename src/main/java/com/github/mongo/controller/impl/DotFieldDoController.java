@@ -1,5 +1,6 @@
-package com.github.mongo.controller;
+package com.github.mongo.controller.impl;
 
+import com.github.mongo.controller.IDotFieldDoController;
 import com.github.mongo.pojo.doo.DotFieldDO;
 import com.github.mongo.repository.IDotFieldDoRepository;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,7 +20,7 @@ import javax.annotation.Resource;
  * @since 0.0.1
  */
 @RestController
-public class DotFieldDoController {
+public class DotFieldDoController implements IDotFieldDoController {
 
     @Resource
     private IDotFieldDoRepository repository;
@@ -27,10 +28,11 @@ public class DotFieldDoController {
     /**
      * 保存单个 DotFieldDO 对象
      *
-     * @param dotFieldDO  DotFieldDO
+     * @param dotFieldDO DotFieldDO
      * @return DotFieldDO
      */
     @PostMapping("/dot")
+    @Override
     public DotFieldDO save(@RequestBody DotFieldDO dotFieldDO) {
         return repository.save(dotFieldDO);
     }

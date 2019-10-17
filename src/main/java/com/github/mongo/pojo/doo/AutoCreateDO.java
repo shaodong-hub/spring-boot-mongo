@@ -34,8 +34,4 @@ public class AutoCreateDO {
     @Indexed
     private Date date;
 
-    public AutoCreateDO(Date date) {
-        this.date = date;
-    }
-
 }

@@ -1,17 +1,18 @@
 package com.github.mongo.repository.impl;
 
+import com.github.mongo.pojo.bo.ComplexDataBO;
 import com.github.mongo.pojo.doo.ComplexDataDO;
-import com.github.mongo.pojo.dto.ComplexDataDTO;
 import com.github.mongo.repository.IComplexDataRepository;
-import com.mongodb.client.result.UpdateResult;
-import org.jetbrains.annotations.NotNull;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.aggregation.Aggregation;
+import org.springframework.data.mongodb.core.aggregation.AggregationResults;
 import org.springframework.data.mongodb.core.query.Criteria;
-import org.springframework.data.mongodb.core.query.Query;
-import org.springframework.data.mongodb.core.query.Update;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -31,11 +32,19 @@ public class ComplexDataRepositoryImpl implements IComplexDataRepository {
     private MongoTemplate mongoTemplate;
 
     @Override
-    public ComplexDataDO update(@NotNull ComplexDataDTO dataDO) {
-        Query query = Query.query(Criteria.where("name").is(dataDO.getName()));
-        Update update = new Update().inc("data." + dataDO.getKey(), dataDO.getValue());
-        UpdateResult result = mongoTemplate.upsert(query, update, ComplexDataDO.class);
-        return mongoTemplate.findOne(query, ComplexDataDO.class);
+    public List<ComplexDataBO> getTop5ByDateBetween(Date start, Date end) {
+        Aggregation agg = Aggregation.newAggregation(
+                Aggregation.match(Criteria.where("date").gte(start).lt(end)),
+                Aggregation.project("name", "count", "pass"),
+                Aggregation.group("name")
+                        .first("name").as("name")
+                        .first("pass").as("pass")
+                        .sum("count").as("sum"),
+                Aggregation.sort(Sort.Direction.DESC, "sum"),
+                Aggregation.limit(5)
+        );
+        AggregationResults<ComplexDataBO> result = mongoTemplate.aggregate(agg, ComplexDataDO.class, ComplexDataBO.class);
+        return result.getMappedResults();
     }
 
 }

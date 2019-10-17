@@ -27,8 +27,7 @@ public class ScheduleCapped {
 
     @Scheduled(fixedDelay = 1000)
     public void task() {
-        repository.save(new CappedDataDO(new Date()));
+        repository.save(CappedDataDO.builder().date(new Date()).build());
     }
-
 
 }

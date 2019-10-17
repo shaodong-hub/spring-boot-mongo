@@ -1,8 +1,9 @@
 package com.github.mongo.repository;
 
-import com.github.mongo.pojo.doo.ComplexDataDO;
-import com.github.mongo.pojo.dto.ComplexDataDTO;
-import org.jetbrains.annotations.NotNull;
+import com.github.mongo.pojo.bo.ComplexDataBO;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * <p>
@@ -17,12 +18,6 @@ import org.jetbrains.annotations.NotNull;
 
 public interface IComplexDataRepository {
 
-    /**
-     * 更新数据
-     *
-     * @param dataDO 数据
-     * @return ComplexDataDO
-     */
-    ComplexDataDO update(@NotNull ComplexDataDTO dataDO);
+    List<ComplexDataBO> getTop5ByDateBetween(Date start, Date end);
 
 }

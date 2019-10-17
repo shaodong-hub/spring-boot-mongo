@@ -1,14 +1,15 @@
 package com.github.mongo.init;
 
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import java.util.Set;
 
 /**
  * <p>
- * 创建时间为 19:14 2019-05-20
+ * 创建时间为 下午5:48 2019/10/16
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -16,8 +17,10 @@ import java.util.Set;
  * @version 0.0.1
  * @since 0.0.1
  */
-//@Configuration
-public class ConfigDropCollections {
+
+@Order(0)
+//@Component
+public class InitDropCollection implements CommandLineRunner {
 
     @Resource
     public MongoTemplate template;
@@ -25,8 +28,8 @@ public class ConfigDropCollections {
     /**
      * 启动时候删除所有的表
      */
-    @PostConstruct
-    public void init() {
+    @Override
+    public void run(String... args) throws Exception {
         Set<String> set = template.getCollectionNames();
         set.forEach(one -> template.dropCollection(one));
     }

@@ -1,14 +1,15 @@
 package com.github.mongo.pojo.dto;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import java.util.Date;
 
 /**
  * <p>
- * 创建时间为 14:39 2019-08-20
+ * 创建时间为 下午7:50 2019/10/16
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -16,18 +17,20 @@ import org.springframework.data.mongodb.core.index.Indexed;
  * @version 0.0.1
  * @since 0.0.1
  */
-@Setter
-@Getter
-@ToString
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class ComplexDataDTO {
 
-    @Id
-    private String id;
+    private Integer top;
 
-    @Indexed
-    private String name;
+    //    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date start;
 
-    private String key;
+    //    @JsonFormat(locale = "zh", timezone = "GMT+8", pattern = "yyyy-MM-dd")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date end;
 
-    private Integer value;
+
 }

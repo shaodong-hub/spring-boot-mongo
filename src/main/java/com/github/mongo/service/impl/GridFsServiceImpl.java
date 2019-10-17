@@ -1,13 +1,12 @@
-package com.github.mongo.controller;
+package com.github.mongo.service.impl;
 
 import com.github.mongo.repository.IGridFsResourceRepository;
+import com.github.mongo.service.IGridFsService;
+import lombok.SneakyThrows;
 import org.apache.tomcat.util.http.fileupload.IOUtils;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.http.HttpHeaders;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
@@ -19,7 +18,7 @@ import java.util.List;
 
 /**
  * <p>
- * 创建时间为 19:38 2019-05-20
+ * 创建时间为 上午11:52 2019/10/17
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -27,30 +26,21 @@ import java.util.List;
  * @version 0.0.1
  * @since 0.0.1
  */
-@RestController
-public class GridFsResourceController {
+
+@Service
+public class GridFsServiceImpl implements IGridFsService {
 
     @Resource
     private IGridFsResourceRepository repository;
 
-    /**
-     * 获取所有的文件名
-     *
-     * @return 文件名
-     */
-    @GetMapping("/files")
-    public List<String> files() {
+    @Override
+    public List<String> fileNames() {
         return repository.getFileName();
     }
 
-    /**
-     * 下载文件
-     *
-     * @param name     文件名称
-     * @param response HttpServletResponse
-     */
-    @GetMapping("/file/{name}")
-    public void download(@PathVariable String name, @NotNull HttpServletResponse response) throws IOException {
+    @SneakyThrows(IOException.class)
+    @Override
+    public void download(String name, @NotNull HttpServletResponse response) {
         OutputStream outputStream = response.getOutputStream();
         response.setContentType("application/x-download");
         response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=test.txt");
@@ -59,17 +49,11 @@ public class GridFsResourceController {
         outputStream.flush();
     }
 
-    /**
-     * 上传文件
-     *
-     * @param id   文件ID
-     * @param file MultipartFile
-     * @return String 文件名
-     */
-    @PostMapping("/file/{id}")
-    public String upload(@PathVariable String id, @NotNull MultipartFile file) throws IOException {
+    @SneakyThrows(IOException.class)
+    @Override
+    public String upload(String id, @NotNull MultipartFile file) {
         InputStream inputStream = file.getInputStream();
         return repository.saveFile(id, inputStream);
-    }
 
+    }
 }

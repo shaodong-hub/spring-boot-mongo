@@ -33,7 +33,9 @@ public class ConfigCappedCollection {
     @PostConstruct
     public void initCappedCollection() {
         if (!template.collectionExists(CappedDataDO.class)) {
-            template.createCollection(CappedDataDO.class, CollectionOptions.empty().capped().maxDocuments(10).size(10000L));
+            CollectionOptions options = CollectionOptions.empty()
+                    .capped().maxDocuments(10).size(10000L);
+            template.createCollection(CappedDataDO.class, options);
         }
     }
 

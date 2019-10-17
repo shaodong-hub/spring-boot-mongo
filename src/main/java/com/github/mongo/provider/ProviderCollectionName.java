@@ -17,7 +17,7 @@ import org.springframework.context.annotation.Configuration;
  * @since 0.0.1
  */
 @Configuration("auto")
-public class ConfigCollectionNameProvider {
+public class ProviderCollectionName {
 
     public String getName() {
         return DateTime.now().toString("yyyy-MM-dd_HH:mm");

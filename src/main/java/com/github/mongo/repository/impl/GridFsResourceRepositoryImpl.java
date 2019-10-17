@@ -55,4 +55,5 @@ public class GridFsResourceRepositoryImpl implements IGridFsResourceRepository {
     public void deleteByName(String fileName) {
         operations.delete(new Query(where("filename").is(fileName)));
     }
+
 }
