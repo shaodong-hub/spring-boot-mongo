@@ -35,10 +35,9 @@ public class ComplexDataRepositoryImpl implements IComplexDataRepository {
     public List<ComplexDataBO> getTop5ByDateBetween(Date start, Date end) {
         Aggregation agg = Aggregation.newAggregation(
                 Aggregation.match(Criteria.where("date").gte(start).lt(end)),
-                Aggregation.project("name", "count", "pass"),
+                Aggregation.project("name", "count"),
                 Aggregation.group("name")
                         .first("name").as("name")
-                        .first("pass").as("pass")
                         .sum("count").as("sum"),
                 Aggregation.sort(Sort.Direction.DESC, "sum"),
                 Aggregation.limit(5)

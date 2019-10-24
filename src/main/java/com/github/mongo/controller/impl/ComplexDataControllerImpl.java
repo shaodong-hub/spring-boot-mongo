@@ -40,10 +40,6 @@ public class ComplexDataControllerImpl implements IComplexDataController {
         ).build();
     }
 
-    @GetMapping("/test")
-    public ComplexDataDTO getComplexDataDTO(ComplexDataDTO complexDataDTO) {
-        return complexDataDTO;
-    }
 
 
 }

@@ -1,12 +1,10 @@
 package com.github.mongo.schedule;
 
-import com.github.mongo.pojo.doo.CappedDataDO;
 import com.github.mongo.repository.ICappedDataDoRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.Date;
 
 /**
  * <p>
@@ -27,7 +25,7 @@ public class ScheduleCapped {
 
     @Scheduled(fixedDelay = 1000)
     public void task() {
-        repository.save(CappedDataDO.builder().date(new Date()).build());
+//        repository.save(CappedDataDO.builder().date(new Date()).build());
     }
 
 }

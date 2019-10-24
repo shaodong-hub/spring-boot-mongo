@@ -3,7 +3,6 @@ package com.github.mongo.controller.impl;
 import com.github.mongo.controller.IGridFsController;
 import com.github.mongo.pojo.dto.ResultDTO;
 import com.github.mongo.service.IGridFsService;
-import lombok.SneakyThrows;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -13,7 +12,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
 import java.util.List;
 
 /**
@@ -39,14 +37,12 @@ public class GridFsControllerImpl implements IGridFsController {
     }
 
     @GetMapping("/file/{name}")
-    @SneakyThrows(IOException.class)
     @Override
     public void download(@PathVariable String name, @NotNull HttpServletResponse response) {
         service.download(name, response);
     }
 
     @PostMapping("/file/{id}")
-    @SneakyThrows(IOException.class)
     @Override
     public String upload(@PathVariable String id, @NotNull MultipartFile file) {
         return service.upload(id, file);

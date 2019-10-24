@@ -38,7 +38,7 @@ public class ComplexDataControllerImplTest {
 
     @Test
     public void getByDateBetween() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/top?top=10&start=2019-09-10&end=2019-10-16"))
+        mockMvc.perform(MockMvcRequestBuilders.get("/top?top=5&start=2019-09-10&end=2019-10-16"))
                 .andDo(print())
                 .andExpect(status().isOk())
 //                .andExpect(jsonPath("$.status").value(0))
@@ -48,14 +48,4 @@ public class ComplexDataControllerImplTest {
     }
 
 
-    @Test
-    public void getComplexDataDTO() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/test?top=10&start=2019-09-10&end=2019-10-16"))
-                .andDo(print())
-                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.status").value(0))
-                .andReturn()
-                .getResponse()
-                .getContentAsString();
-    }
 }
