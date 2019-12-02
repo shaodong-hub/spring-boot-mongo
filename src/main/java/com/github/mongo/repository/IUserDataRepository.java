@@ -26,6 +26,7 @@ public interface IUserDataRepository extends PagingAndSortingRepository<UserData
      */
     void deleteByNameEquals(String name);
 
+
     /**
      * 根据 ID 查询 SimpleDataDO
      *

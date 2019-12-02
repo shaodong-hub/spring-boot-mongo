@@ -56,7 +56,7 @@ public class UserDataDO {
      * 用来设置集合中 文档到期的秒数。如果没有设置，则默认为-1
      * 60 秒之后过期
      */
-    @Indexed(name = "ttl", expireAfterSeconds = 60)
+    @Indexed(name = "IDX_TTL", expireAfterSeconds = 60)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date expire;
 

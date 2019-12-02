@@ -46,4 +46,16 @@ public class ComplexDataRepositoryImpl implements IComplexDataRepository {
         return result.getMappedResults();
     }
 
+
+    public List<ComplexDataBO> getTop5ByDateBetween2(Date start, Date end) {
+        Aggregation agg = Aggregation.newAggregation(
+                Aggregation.project("access_count"),
+                Aggregation.group("access_count")
+                        .sum("access_count").as("sum"),
+                Aggregation.sort(Sort.Direction.DESC, "sum"),
+                Aggregation.limit(5)
+        );
+        AggregationResults<ComplexDataBO> result = mongoTemplate.aggregate(agg, ComplexDataDO.class, ComplexDataBO.class);
+        return result.getMappedResults();
+    }
 }
