@@ -7,9 +7,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.domain.AfterDomainEventPublication;
+import org.springframework.data.domain.DomainEvents;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.Map;
 
@@ -46,5 +50,17 @@ public class ComplexDataDO {
     private Date date;
 
     private Map<String, Integer> data;
+
+    @DomainEvents
+    public Collection<ComplexDataDO> domainEvents() {
+        System.out.println("DomainEvents 开始执行!");
+        return Collections.singleton(this);
+    }
+
+    @AfterDomainEventPublication
+    public void callBackMethod() {
+        System.out.println("AfterDomainEventPublication 开始执行!");
+    }
+
 
 }
