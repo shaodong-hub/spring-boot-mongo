@@ -1,4 +1,4 @@
-package com.github.mongo.pojo.doo;
+package com.github.mongo.pojo;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -7,15 +7,15 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.Map;
 
 /**
- * 固定大小的集合
- *
  * <p>
- * 创建时间为 18:53 2019-05-20
+ * 创建时间为 14:39 2019-08-20
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -23,19 +23,28 @@ import java.util.Date;
  * @version 0.0.1
  * @since 0.0.1
  */
-
 @Setter
 @Getter
 @Builder
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Document(collection = "capped_data")
-public class CappedDataDO {
+@Document(collection = "complex_data")
+public class ComplexDataDO {
 
     @Id
     private String id;
 
+    @Indexed
+    private String name;
+
+    private String pass;
+
+    private Integer count;
+
+    @Indexed
     private Date date;
+
+    private Map<String, Integer> data;
 
 }

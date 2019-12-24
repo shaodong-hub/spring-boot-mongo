@@ -1,6 +1,7 @@
 package com.github.mongo.repository;
 
-import com.github.mongo.pojo.doo.ComplexDataDO;
+import com.github.mongo.pojo.ComplexDataDO;
+import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 /**
@@ -14,7 +15,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @since 0.0.1
  */
 
-public interface IComplexDataJpaRepository extends PagingAndSortingRepository<ComplexDataDO, String> {
-
+public interface IComplexDataJpaRepository extends PagingAndSortingRepository<ComplexDataDO, String>, QuerydslPredicateExecutor<ComplexDataDO> {
 
 }
