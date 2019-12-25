@@ -1,7 +1,10 @@
 package com.github.mongo.repository;
 
 import com.github.mongo.pojo.ComplexDataDO;
+import com.github.mongo.pojo.SetDataDO;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import java.util.List;
 
 /**
  * <p>
@@ -16,4 +19,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface IComplexDataJpaRepository extends PagingAndSortingRepository<ComplexDataDO, String> {
 
+    List<ComplexDataDO> findAllBySetContains(String data);
+
+    List<ComplexDataDO> findAllByDoSetContains(SetDataDO setData);
 }

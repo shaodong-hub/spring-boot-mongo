@@ -1,5 +1,6 @@
 package com.github.mongo.pojo;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -10,12 +11,15 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.domain.AfterDomainEventPublication;
 import org.springframework.data.domain.DomainEvents;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 /**
  * <p>
@@ -37,19 +41,21 @@ import java.util.Map;
 public class ComplexDataDO {
 
     @Id
+    @JsonProperty
     private String id;
 
     @Indexed
     private String name;
 
-    private String pass;
-
-    private Integer count;
-
     @Indexed
     private Date date;
 
     private Map<String, Integer> data;
+
+    private Set<String> set;
+
+    @DBRef
+    private List<SetDataDO> doSet;
 
     @DomainEvents
     public Collection<ComplexDataDO> domainEvents() {
@@ -61,6 +67,5 @@ public class ComplexDataDO {
     public void callBackMethod() {
         System.out.println("AfterDomainEventPublication 开始执行!");
     }
-
 
 }

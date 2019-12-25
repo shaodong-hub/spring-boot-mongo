@@ -30,4 +30,14 @@ public class ComplexDataController {
     }
 
 
+//    @GetMapping("/complex/{data}")
+//    public List<ComplexDataDO> findAll(@PathVariable String data) {
+//        return repository.findAllBySetContains(data);
+//    }
+
+//    @GetMapping("/complex/{data}")
+//    public List<ComplexDataDO> findAll(@PathVariable String data) {
+//        return repository.findAllByDoSetContains(new SetDataDO(data));
+//    }
+
 }
