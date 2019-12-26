@@ -1,6 +1,9 @@
 package com.github.mongo.service;
 
 import com.github.mongo.pojo.ComplexDataDO;
+import org.jetbrains.annotations.NotNull;
+import org.springframework.context.event.EventListener;
+import org.springframework.data.mongodb.core.mapping.event.AfterSaveEvent;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.event.TransactionPhase;
 import org.springframework.transaction.event.TransactionalEventListener;
@@ -29,5 +32,13 @@ public class ComplexDataService {
     public void event(ComplexDataDO complexDataDO) {
         System.out.println("TransactionalEventListener  --- " + complexDataDO);
     }
+
+
+    @EventListener
+    public void aaaass(@NotNull AfterSaveEvent<ComplexDataDO> saveEvent) {
+        ComplexDataDO source = saveEvent.getSource();
+        System.out.println("SpringBootMongo 自带事件发布:" + source);
+    }
+
 
 }
