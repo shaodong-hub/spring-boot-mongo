@@ -3,6 +3,7 @@ package com.github.mongo.init;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.core.annotation.Order;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
 import java.util.Set;
@@ -19,7 +20,7 @@ import java.util.Set;
  */
 
 @Order(0)
-//@Component
+@Component
 public class InitDropCollection implements CommandLineRunner {
 
     @Resource

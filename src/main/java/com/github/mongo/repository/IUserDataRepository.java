@@ -1,10 +1,7 @@
 package com.github.mongo.repository;
 
-import com.github.mongo.pojo.doo.UserDataDO;
+import com.github.mongo.pojo.UserDataDO;
 import org.springframework.data.repository.PagingAndSortingRepository;
-import org.springframework.scheduling.annotation.Async;
-
-import java.util.concurrent.Future;
 
 /**
  * <p>
@@ -18,23 +15,6 @@ import java.util.concurrent.Future;
  */
 
 public interface IUserDataRepository extends PagingAndSortingRepository<UserDataDO, String> {
-
-    /**
-     * 按照 name 删除
-     *
-     * @param name name
-     */
-    void deleteByNameEquals(String name);
-
-
-    /**
-     * 根据 ID 查询 SimpleDataDO
-     *
-     * @param id id
-     * @return Future
-     */
-    @Async
-    Future<UserDataDO> findSimpleDataDOById(String id);
 
 
 }
