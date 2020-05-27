@@ -1,7 +1,12 @@
 package com.github.mongo.schedule;
 
+import com.github.mongo.pojo.ComplexDataDO;
+import com.github.mongo.repository.IComplexDataJpaRepository;
+import lombok.RequiredArgsConstructor;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import java.util.Date;
 
 /**
  * <p>
@@ -14,11 +19,14 @@ import org.springframework.stereotype.Component;
  * @since 0.0.1
  */
 @Component
+@RequiredArgsConstructor
 public class ScheduleUserData {
+
+    private final IComplexDataJpaRepository repository;
 
     @Scheduled(fixedDelay = 1000)
     public void task() {
-
+        repository.save(ComplexDataDO.builder().name(new Date().toString()).build());
     }
 
 }
