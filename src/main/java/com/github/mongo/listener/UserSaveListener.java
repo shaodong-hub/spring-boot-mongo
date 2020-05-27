@@ -1,6 +1,6 @@
-package com.github.mongo.service;
+package com.github.mongo.listener;
 
-import com.github.mongo.pojo.ComplexDataDO;
+import com.github.mongo.pojo.orm.UserDO;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.mongodb.core.mapping.event.AfterSaveEvent;
@@ -21,7 +21,7 @@ import org.springframework.transaction.event.TransactionalEventListener;
 
 
 @Service
-public class ComplexDataService {
+public class UserSaveListener {
 
     /**
      * 接受 ComplexDataDO 发出的类型为 UserSaveEvent 的DomainEvents事件
@@ -29,14 +29,13 @@ public class ComplexDataService {
      * @param complexDataDO 数据
      */
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
-    public void event(ComplexDataDO complexDataDO) {
+    public void event(UserDO complexDataDO) {
         System.out.println("TransactionalEventListener  --- " + complexDataDO);
     }
 
-
     @EventListener
-    public void aaaass(@NotNull AfterSaveEvent<ComplexDataDO> saveEvent) {
-        ComplexDataDO source = saveEvent.getSource();
+    public void aaaass(@NotNull AfterSaveEvent<UserDO> saveEvent) {
+        UserDO source = saveEvent.getSource();
         System.out.println("SpringBootMongo 自带事件发布:" + source);
     }
 

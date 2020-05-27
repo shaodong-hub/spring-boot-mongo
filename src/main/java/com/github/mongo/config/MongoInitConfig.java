@@ -1,6 +1,6 @@
 package com.github.mongo.config;
 
-import com.github.mongo.pojo.ComplexDataDO;
+import com.github.mongo.pojo.orm.UserDO;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.data.domain.Sort;
@@ -24,7 +24,7 @@ public class MongoInitConfig {
 
     @EventListener(ApplicationReadyEvent.class)
     public void initIndicesAfterStartup() {
-        IndexOperations userIndexOps = template.indexOps(ComplexDataDO.class);
-        userIndexOps.ensureIndex(new Index().on("name", Sort.Direction.ASC));
+        IndexOperations userIndexOps = template.indexOps(UserDO.class);
+        userIndexOps.ensureIndex(new Index().on("username", Sort.Direction.ASC));
     }
 }
