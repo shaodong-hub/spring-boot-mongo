@@ -1,7 +1,11 @@
 package com.github.mongo.controller;
 
 import com.github.mongo.pojo.ComplexDataDO;
+import com.github.mongo.pojo.IComplexDataVO;
 import com.github.mongo.repository.IComplexDataJpaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,6 +27,11 @@ public class ComplexDataController {
 
     @Resource
     private IComplexDataJpaRepository repository;
+
+    @GetMapping("/complex")
+    public Page<IComplexDataVO> findAll(Pageable pageable) {
+        return repository.findAllBy(pageable, IComplexDataVO.class);
+    }
 
     @PostMapping("/complex")
     public ComplexDataDO save(@RequestBody ComplexDataDO complexData) {

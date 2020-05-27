@@ -47,6 +47,8 @@ public class ComplexDataDO {
     @Indexed
     private String name;
 
+    private Integer age;
+
     @Indexed
     private Date date;
 

@@ -3,6 +3,9 @@ package com.github.mongo.schedule;
 import com.github.mongo.pojo.ComplexDataDO;
 import com.github.mongo.repository.IComplexDataJpaRepository;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.RandomStringUtils;
+import org.apache.commons.lang3.RandomUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
@@ -26,7 +29,12 @@ public class ScheduleUserData {
 
     @Scheduled(fixedDelay = 1000)
     public void task() {
-        repository.save(ComplexDataDO.builder().name(new Date().toString()).build());
+        ComplexDataDO data = ComplexDataDO.builder()
+                .name(RandomStringUtils.randomAlphabetic(4))
+                .age(RandomUtils.nextInt(1,120))
+                .date(new Date())
+                .build();
+        repository.save(data);
     }
 
 }

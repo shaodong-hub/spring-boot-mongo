@@ -2,6 +2,8 @@ package com.github.mongo.repository;
 
 import com.github.mongo.pojo.ComplexDataDO;
 import com.github.mongo.pojo.SetDataDO;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import java.util.List;
@@ -18,6 +20,8 @@ import java.util.List;
  */
 
 public interface IComplexDataJpaRepository extends PagingAndSortingRepository<ComplexDataDO, String> {
+
+    <V> Page<V> findAllBy(Pageable pageable, Class<V> clz);
 
     List<ComplexDataDO> findAllBySetContains(String data);
 
