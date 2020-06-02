@@ -16,7 +16,7 @@ import javax.annotation.Resource;
  * @date 2020-05-27 17:45
  */
 
-@Component
+//@Component
 public class MongoInitConfig {
 
     @Resource

@@ -29,7 +29,7 @@ public class AspectLog {
      * 1.本类的引用
      * 2.其他的切面引用
      */
-    @Pointcut("execution(* com.github.mongo.controller.impl.*.*(..))")
+    @Pointcut("execution(* com.github.mongo.controller.*.*(..))")
     public void pointCut() {
     }
 
@@ -38,7 +38,7 @@ public class AspectLog {
         long before = System.currentTimeMillis();
         Object object = pdj.proceed();
         long after = System.currentTimeMillis();
-        log.info("{}|{}|{}", (after - before), pdj.getSignature().getName(), Arrays.asList(pdj.getArgs()));
+        log.error("{}|{}|{}", (after - before), pdj.getSignature().getName(), Arrays.asList(pdj.getArgs()));
         return object;
     }
 
