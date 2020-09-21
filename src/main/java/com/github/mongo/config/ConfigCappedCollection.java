@@ -19,7 +19,7 @@ import javax.annotation.Resource;
  * @since 0.0.1
  */
 
-@Configuration
+//@Configuration
 public class ConfigCappedCollection {
 
     @Resource

@@ -17,7 +17,7 @@ import java.util.Set;
  * @version 0.0.1
  * @since 0.0.1
  */
-@Configuration
+//@Configuration
 public class ConfigDropCollections {
 
     @Resource

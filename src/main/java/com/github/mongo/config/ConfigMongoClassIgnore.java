@@ -24,7 +24,7 @@ import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
  * @since 0.0.1
  */
 
-@Configuration
+//@Configuration
 public class ConfigMongoClassIgnore {
 
     /**
