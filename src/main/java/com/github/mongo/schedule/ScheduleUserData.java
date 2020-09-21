@@ -27,7 +27,7 @@ public class ScheduleUserData {
 
     private final IComplexDataJpaRepository repository;
 
-    @Scheduled(fixedDelay = 1000)
+    @Scheduled(fixedDelay = 1)
     public void task() {
         ComplexDataDO data = ComplexDataDO.builder()
                 .name(RandomStringUtils.randomAlphabetic(4))
