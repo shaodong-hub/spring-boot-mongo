@@ -1,16 +1,15 @@
 package com.github.mongo.schedule;
 
-import com.github.mongo.pojo.CappedDataDO;
-import com.github.mongo.repository.ICappedDataDoRepository;
+
+import com.github.mongo.repository.ISimpleDataRepository;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.util.Date;
 
 /**
  * <p>
- * 创建时间为 19:24 2019-05-20
+ * 创建时间为 19:23 2019-05-20
  * 项目名称 spring-boot-mongo
  * </p>
  *
@@ -19,16 +18,14 @@ import java.util.Date;
  * @since 0.0.1
  */
 
-@Component
-public class ScheduleCapped {
+//@Component
+public class ScheduleSimpleData {
 
     @Resource
-    private ICappedDataDoRepository repository;
+    private ISimpleDataRepository repository;
 
     @Scheduled(fixedDelay = 1000)
     public void task() {
-        repository.save(new CappedDataDO(new Date()));
     }
-
 
 }

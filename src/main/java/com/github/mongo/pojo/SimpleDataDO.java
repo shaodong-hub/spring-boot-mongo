@@ -1,15 +1,15 @@
 package com.github.mongo.pojo;
 
-import com.alibaba.fastjson.JSON;
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
-import org.springframework.data.annotation.Transient;
-import org.springframework.data.annotation.Version;
 import org.springframework.data.mongodb.core.index.CompoundIndex;
 import org.springframework.data.mongodb.core.index.CompoundIndexes;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -17,6 +17,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.Date;
+
+import static com.github.mongo.pojo.ICollection.SIMPLE_DATA;
 
 /**
  * <p>
@@ -32,27 +34,29 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Document(collection = "SimpleDataDO")
-@CompoundIndexes({
-        @CompoundIndex(name = "index", def = "{'message':1,'field':1}")
-})
+@Builder
+@ToString
+@Document(collection = SIMPLE_DATA)
+@CompoundIndexes({@CompoundIndex(name = "IDX_HOSTNAME_CREATED_DATE_USERAGENT", def = "{'hostname':1,'createdDate':1,'userAgent':1}")})
 @JsonInclude(JsonInclude.Include.NON_EMPTY)
 public class SimpleDataDO {
 
     @Id
     private String id;
 
-    @Field("desc")
-    private String message;
+    @Field("hostname")
+    private String hostname;
 
-    private String field;
+    private String userAgent;
+
+    private Long count;
 
     /**
      * 创建 ttl 的集合, 创建改集合时需要设置 ttl 字段, 特别要注意, 该字段 存入的数据类型为 Date
      * 用来设置集合中 文档到期的秒数。如果没有设置，则默认为-1
      * 60 秒之后过期
      */
-    @Indexed(name = "ttl", expireAfterSeconds = 60)
+    @Indexed(name = "ttl", expireAfterSeconds = 60 * 60 * 24 * 31)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date expire;
 
@@ -65,22 +69,5 @@ public class SimpleDataDO {
     @Field("last_modified_date")
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private Date lastModifiedDate;
-
-    /**
-     * 被 {@link Transient} 标记的字段将不会保存到数据库中
-     */
-    @Transient
-    private Long temp;
-
-    /**
-     * 版本号
-     */
-    @Version
-    private Long version;
-
-    @Override
-    public String toString() {
-        return JSON.toJSONString(this);
-    }
 
 }
