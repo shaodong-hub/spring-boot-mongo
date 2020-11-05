@@ -53,6 +53,7 @@ public class InitDataRunner implements CommandLineRunner {
     public void run(String... args) throws Exception {
         DateTime dateTime = DateTime.now().dayOfYear().roundFloorCopy();
         for (int i = 0; i < 31; i++) {
+            log.info("round - {}", i);
             Date date = dateTime.minusDays(i).toDate();
             for (int i1 = 0; i1 < 1000; i1++) {
                 SimpleDataDO simple = SimpleDataDO.builder()

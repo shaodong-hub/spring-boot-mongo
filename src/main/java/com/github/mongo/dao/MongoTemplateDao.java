@@ -40,20 +40,21 @@ public class MongoTemplateDao {
 
     public List<OutputTypeVO> aggregation(Collection<String> hostnames) {
         Aggregation agg = Aggregation.newAggregation(operation1(hostnames), operation2(), operation3());
-        AggregationResults<OutputTypeVO> results = mongoTemplate.aggregate(agg, SIMPLE_DATA, OutputTypeVO.class);
+        AggregationResults<OutputTypeVO> results = mongoTemplate.aggregate(agg, SimpleDataDO.class, OutputTypeVO.class);
         return results.getMappedResults();
     }
 
     private AggregationOperation operation1(Collection<String> hostnames) {
-        return Aggregation.match(Criteria.where("count").is(DateTime.now().dayOfYear()).and("hostname").in(hostnames));
+        return Aggregation.match(Criteria.where("created_date").is(new DateTime().dayOfYear().roundFloorCopy().toDate()).and("hostname").in(hostnames));
     }
 
     private AggregationOperation operation2() {
-        return Aggregation.group("userAgent").sum("count").as("sum");
+        return Aggregation.project("userAgent", "count");
     }
 
     private AggregationOperation operation3() {
-        return Aggregation.project("userAgent", "sum");
+        return Aggregation.group("userAgent").first("userAgent").as("userAgent")
+                .sum("count").as("sum");
     }
 
 }

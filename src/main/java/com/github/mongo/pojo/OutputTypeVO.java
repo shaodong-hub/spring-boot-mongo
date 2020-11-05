@@ -1,5 +1,6 @@
 package com.github.mongo.pojo;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -12,8 +13,7 @@ import java.util.Map;
  * @since 1.0
  */
 
-@Getter
-@Setter
+@Data
 @ToString
 public class OutputTypeVO {
 

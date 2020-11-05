@@ -29,11 +29,8 @@ public class MongoTemplateDaoTest {
         list.add("www.BI9Nr.com");
         list.add("www.v40YS.com");
         list.add("www.m441G.com");
-
         List<OutputTypeVO> result = templateDao.aggregation(list);
-
         result.forEach(Object::toString);
-
     }
 
 }
