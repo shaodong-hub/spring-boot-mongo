@@ -8,7 +8,6 @@ import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
@@ -27,13 +26,11 @@ import java.util.Random;
 //@Component
 public class InitDataRunner implements CommandLineRunner {
 
-    private List<String> hostnames = new ArrayList<>();
+    private final List<String> hostnames = new ArrayList<>();
 
-    private List<String> userAgents = new ArrayList<>();
+    private final List<String> userAgents = new ArrayList<>();
 
-    private static DateTimeFormatter fmt = DateTimeFormat.forPattern("yyyy-MM-dd");
-
-    private static final Random random = new Random();
+    private static final Random RANDOM = new Random();
 
     @Resource
     private ISimpleDataRepository repository;
@@ -50,25 +47,24 @@ public class InitDataRunner implements CommandLineRunner {
     }
 
     @Override
-    public void run(String... args) throws Exception {
+    public void run(String... args) {
         DateTime dateTime = DateTime.now().dayOfYear().roundFloorCopy();
         for (int i = 0; i < 31; i++) {
             log.info("round - {}", i);
             Date date = dateTime.minusDays(i).toDate();
             for (int i1 = 0; i1 < 1000; i1++) {
-                SimpleDataDO simple = SimpleDataDO.builder()
-                        .hostname(hostnames.get(random.nextInt(1000)))
-                        .userAgent(userAgents.get(random.nextInt(13))).count((long) random.nextInt(1000))
-                        .createdDate(date)
-                        .expire(date).build();
-                repository.save(simple);
+                repository.save(getSimpleDataDO(date));
             }
         }
         log.info("end");
     }
 
-    public static void main(String[] args) {
-        DateTime dateTime = new DateTime().dayOfYear().roundFloorCopy();
-        System.out.println(dateTime.toString(fmt));
+    private SimpleDataDO getSimpleDataDO(Date date) {
+        return SimpleDataDO.builder()
+                .hostname(hostnames.get(RANDOM.nextInt(1000)))
+                .userAgent(userAgents.get(RANDOM.nextInt(13))).count((long) RANDOM.nextInt(1000))
+                .createdDate(date)
+                .expire(date).build();
     }
+
 }
