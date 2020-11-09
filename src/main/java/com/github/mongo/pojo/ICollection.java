@@ -9,6 +9,6 @@ package com.github.mongo.pojo;
 
 public interface ICollection {
 
-    String SIMPLE_DATA = "SimpleDataDO";
+    String SIMPLE_DATA = "SimpleUserDO";
 
 }

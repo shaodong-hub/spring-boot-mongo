@@ -1,12 +1,10 @@
 package com.github.mongo.init;
 
-import com.github.mongo.pojo.SimpleDataDO;
-import com.github.mongo.repository.ISimpleDataRepository;
+import com.github.mongo.pojo.SimpleUserDO;
+import com.github.mongo.repository.ISimpleUserReactiveRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.springframework.boot.CommandLineRunner;
 
 import javax.annotation.PostConstruct;
@@ -33,7 +31,7 @@ public class InitDataRunner implements CommandLineRunner {
     private static final Random RANDOM = new Random();
 
     @Resource
-    private ISimpleDataRepository repository;
+    private ISimpleUserReactiveRepository repository;
 
     @PostConstruct
     public void init() {
@@ -59,8 +57,8 @@ public class InitDataRunner implements CommandLineRunner {
         log.info("end");
     }
 
-    private SimpleDataDO getSimpleDataDO(Date date) {
-        return SimpleDataDO.builder()
+    private SimpleUserDO getSimpleDataDO(Date date) {
+        return SimpleUserDO.builder()
                 .hostname(hostnames.get(RANDOM.nextInt(1000)))
                 .userAgent(userAgents.get(RANDOM.nextInt(13))).count((long) RANDOM.nextInt(1000))
                 .createdDate(date)

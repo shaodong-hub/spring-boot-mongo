@@ -1,9 +1,7 @@
 package com.github.mongo.repository;
 
-
 import com.github.mongo.pojo.SimpleUserDO;
-import org.springframework.data.repository.PagingAndSortingRepository;
-
+import org.springframework.data.mongodb.repository.ReactiveMongoRepository;
 
 /**
  * <p>
@@ -16,6 +14,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
  * @since 0.0.1
  */
 
-public interface ISimpleUserRepository extends PagingAndSortingRepository<SimpleUserDO, String> {
+public interface ISimpleUserReactiveRepository extends ReactiveMongoRepository<SimpleUserDO, String> {
 
 }
